@@ -256,7 +256,7 @@ export default function Home() {
               </summary>
               <div className="-mt-2 mb-8">
                 <p className="mt-6 mb-4">
-                  Detect when an invoice doesn't exist or when an invoice ID is invalid
+                  Detect when an invoice doesn&apos;t exist or when an invoice ID is invalid
                   and handle the errors gracefully.
                 </p>
                 <p>
@@ -519,7 +519,7 @@ export default function Home() {
               </summary>
               <div className="-mt-2 mb-8">
                 <p className="mt-6 mb-4">
-                  Store a customer's email and name in relation to an invoice in a separate table.
+                  Store a customer&apos;s email and name in relation to an invoice in a separate table.
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=11729s`} className="flex items-center gap-2 hover:text-blue-500">
