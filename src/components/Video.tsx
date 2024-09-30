@@ -14,7 +14,7 @@ export const Video = ({
   return (
     <figure className="mx-auto">
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden rounded"
         style={{
           paddingTop: `${(height / width) * 100}%`,
         }}
@@ -30,11 +30,6 @@ export const Video = ({
           allowFullScreen
         />
       </div>
-      <figcaption className="mt-4">
-        <a href={src} rel="noopener" className="text-blue-600 hover:underline">
-          View on YouTube
-        </a>
-      </figcaption>
     </figure>
   );
 };

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from 'next/font/google';
 import "./globals.css";
 
 import Footer from "@/components/Footer";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 600 900",
+const inter = Inter({
+  weight: ['400', '600', '700', '900'],
+  style: ['normal'],
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} antialiased min-h-screen grid grid-rows-[1fr_auto]`}
+        className={`${inter.className} antialiased min-h-screen grid grid-rows-[1fr_auto]`}
       >
         {children}
         <Footer />
