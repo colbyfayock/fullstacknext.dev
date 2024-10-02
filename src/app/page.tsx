@@ -9,16 +9,39 @@ export default function Home() {
   return (
     <main>
       <Container>
-        <h1 className="text-5xl font-black mt-24 text-center">
-          Become a Next.js 15 Pro
-        </h1>
+        <section className="max-w-3xl my-32 mx-auto">
+          <h1 className="text-5xl font-black mt-24 text-center mb-12">
+            Become a <span className="underline underline-offset-4 decoration-purple-500 decoration-4">Next.js 15 Pro</span>
+          </h1>
+
+          <p className="text-xl text-center mb-12">
+            Next.js is the leading framework for building powerful apps for the web,
+            but with great power comes <span className="line-through">great responsibility</span> the
+            need to fully understand how those APIs can help you solve whatever problem you&apos;re set up to tackle.
+          </p>
+
+          <p className="text-xl text-center mb-6">
+            This course walks you through everything you need to build a full
+            stack <strong className="text-nowrap">Next.js 15</strong> and <strong className="text-nowrap">React 19</strong> app
+            complete with authentication, database management, transactional emails,
+            payments, and everything inbetween.
+          </p>
+
+          <p className="text-xl text-center mb-6">
+            <a href="#video" className="underline underline-offset-4 decoration-purple-500 decoration-4">
+              <strong>
+                Let&apos;s dig in!
+              </strong>
+            </a>
+          </p>
+        </section>
         
-        <section className="text-center my-24">
+        <section id="video" className="text-center my-32">
           <Video title="Full Stack Next.js 15" src={`https://www.youtube.com/watch?v=${YOUTUBE_ID}`} />
 
           <ul className="flex items-center justify-center gap-4 mt-12">
             <li>
-              <a className="inline-flex items-center gap-2 text-white font-bold bg-blue-500 px-4 py-3 rounded" href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}`}>
+              <a className="inline-flex items-center gap-2 text-white font-bold bg-purple-500 px-4 py-3 rounded" href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}`}>
                 <Youtube className="w-6 h-auto" />
                 Watch on YouTube
               </a>
@@ -32,12 +55,12 @@ export default function Home() {
           </ul>
         </section>          
 
-        <section className="text-center my-24">
-          <h2 className="text-3xl font-bold mb-8">
+        <section className="text-center my-32">
+          <h2 className="text-3xl font-black mb-12">
             What You&apos;ll Learn
           </h2>
 
-          <ul className="text-lg space-y-3">
+          <ul className="text-lg space-y-3 mb-12">
             <li>💻&nbsp;&nbsp;Build a full stack app with Next.js 15 and React 19</li>
             <li>💅&nbsp;&nbsp;Design responsive UI components with Tailwind CSS and shadcn/ui</li>
             <li>💾&nbsp;&nbsp;Manage databases with Xata and Drizzle ORM</li>
@@ -50,12 +73,14 @@ export default function Home() {
             <li>🚀&nbsp;&nbsp;Deploy a production-ready Next.js application to Vercel</li>
           </ul>
 
-          {/* <p>Headline</p> */}
+          <p className="text-2xl font-bold">
+            <a href="#video" className="underline underline-offset-4 decoration-purple-500 decoration-4">Get started</a> building your next full stack app!
+          </p>
         </section>
 
-        <section className="flex flex-col items-center">
+        <section className="max-w-3xl mx-auto">
 
-          <h2 className="text-3xl font-bold mb-8">
+          <h2 className="text-3xl text-center font-black mb-12">
             Full Chapter Breakdown
           </h2>
 
@@ -736,10 +761,21 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="text-center my-24">
-          <h2 className="text-3xl font-bold mb-8">
+        <section className="text-center my-32">
+          <h2 className="text-3xl font-black mb-12">
             Get Weekly Tutorials
           </h2>
+
+          <form action="https://app.convertkit.com/forms/7181383/subscriptions" method="post">
+            <p className="mb-4">
+              <input className="px-4 py-3 border-2 border-slate-400 rounded" name="email_address" aria-label="Your email address" placeholder="Your email address" required type="email" />
+            </p>
+            <p>
+              <button className="inline-flex items-center gap-2 text-white font-bold bg-purple-500 px-4 py-3 rounded">
+                Get Free Tutorials
+              </button>
+            </p>
+          </form>
 
         </section>
       </Container>
