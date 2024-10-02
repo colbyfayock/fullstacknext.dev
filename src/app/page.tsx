@@ -3,7 +3,7 @@ import { Youtube, Bell } from 'lucide-react';
 import Container from "@/components/Container";
 import Video from "@/components/Video";
 
-const YOUTUBE_ID = 'KvIMe69XO00'
+const YOUTUBE_ID = 'Mcw8Mp8PYUE'
 
 export default function Home() {
   return (
