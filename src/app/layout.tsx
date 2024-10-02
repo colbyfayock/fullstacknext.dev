@@ -13,6 +13,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Full Stack Next.js Course",
   description: "Learn how to build a full stack Next.js 15 and React 19 course with authentication, database management, transactional emails, and payments.",
+  openGraph: {
+    images: ['/images/full-stack-nextjs-social-card.jpg'],
+  },
 };
 
 export default function RootLayout({
