@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
-import { Analytics } from "@vercel/analytics/react"
+import PlausibleProvider from 'next-plausible'
 import "./globals.css";
 
 import Footer from "@/components/Footer";
@@ -26,12 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <PlausibleProvider domain="fullstacknext.dev" />
+      </head>
       <body
         className={`${inter.className} antialiased min-h-screen grid grid-rows-[1fr_auto]`}
       >
         {children}
         <Footer />
-        <Analytics />
       </body>
     </html>
   );
