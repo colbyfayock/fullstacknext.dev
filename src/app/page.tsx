@@ -1,13 +1,44 @@
-import { Youtube, Bell } from 'lucide-react';
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+import { Youtube, Bell, CheckCircle, XCircle } from 'lucide-react';
 
 import Container from "@/components/Container";
 import Video from "@/components/Video";
+import NewsletterForm from "@/components/NewsletterForm";
 
 const YOUTUBE_ID = 'Mcw8Mp8PYUE'
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const status = searchParams.get('status');
+  const message = searchParams.get('message');
+
   return (
     <main>
+      {status && (
+        <div className={`w-full py-4 px-6 ${
+          status === 'success' 
+            ? 'bg-green-50 border-green-200 text-green-800' 
+            : 'bg-red-50 border-red-200 text-red-800'
+        } border-b`}>
+          <Container>
+            <div className="flex items-center justify-center gap-3 max-w-3xl mx-auto">
+              {status === 'success' ? (
+                <CheckCircle className="h-5 w-5 flex-shrink-0" />
+              ) : (
+                <XCircle className="h-5 w-5 flex-shrink-0" />
+              )}
+              <p className="text-sm font-medium">
+                {status === 'success' 
+                  ? (message ? decodeURIComponent(message) : 'Success!')
+                  : 'Something went wrong, please try again'
+                }
+              </p>
+            </div>
+          </Container>
+        </div>
+      )}
       <Container>
         <section className="max-w-3xl my-32 mx-auto">
           <h1 className="text-5xl font-black mt-24 text-center mb-12">
@@ -889,28 +920,7 @@ export default function Home() {
             Get Weekly Tutorials
           </h2>
 
-          <form method="POST" action="https://mailtik.spacejelly.dev/api/forms/newsletter">
-            <input type="text" autoComplete="off" tabIndex={-1} style={{
-              position: "absolute",
-              left: "-9999px",
-              width: "0",
-              height: "0",
-              border: "0",
-              padding: "0",
-              margin: "0",
-              overflow: "hidden"
-            }} name="phone" />
-            <input type="hidden" name="redirect" value="https://www.fullstacknext.dev/" />
-            <input type="hidden" name="tags" value="location:fullstacknext.dev" />
-            <p className="mb-4">
-              <input className="px-4 py-3 border-2 border-slate-400 rounded" name="email" aria-label="Your email address" placeholder="Your email address" required type="email" />
-            </p>
-            <p>
-              <button type="submit" className="inline-flex items-center gap-2 text-white font-bold bg-purple-500 px-4 py-3 rounded">
-                Get Free Tutorials
-              </button>
-            </p>
-          </form>
+          <NewsletterForm />
         </section>
       </Container>
     </main>
