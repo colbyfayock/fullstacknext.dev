@@ -1,7 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Play, Bell, CheckCircle, XCircle } from 'lucide-react';
 
 import Container from "@/components/Container";
@@ -11,9 +10,14 @@ import NewsletterForm from "@/components/NewsletterForm";
 const YOUTUBE_ID = 'Mcw8Mp8PYUE'
 
 function StatusMessage() {
-  const searchParams = useSearchParams();
-  const status = searchParams.get('status');
-  const message = searchParams.get('message');
+  const [status, setStatus] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    setStatus(searchParams.get('status'));
+    setMessage(searchParams.get('message'));
+  }, []);
 
   if (!status) return null;
 
@@ -45,9 +49,7 @@ function StatusMessage() {
 export default function Home() {
   return (
     <main>
-      <Suspense fallback={null}>
-        <StatusMessage />
-      </Suspense>
+      <StatusMessage />
       <Container>
         <section className="max-w-3xl my-32 mx-auto">
           <h1 className="text-5xl font-black mt-24 text-center mb-12">
