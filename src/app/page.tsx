@@ -889,17 +889,28 @@ export default function Home() {
             Get Weekly Tutorials
           </h2>
 
-          <form action="https://app.convertkit.com/forms/7181383/subscriptions" method="post">
+          <form method="POST" action="https://mailtik.spacejelly.dev/api/forms/newsletter">
+            <input type="text" autoComplete="off" tabIndex={-1} style={{
+              position: "absolute",
+              left: "-9999px",
+              width: "0",
+              height: "0",
+              border: "0",
+              padding: "0",
+              margin: "0",
+              overflow: "hidden"
+            }} name="phone" />
+            <input type="hidden" name="redirect" value="https://www.fullstacknext.dev/" />
+            <input type="hidden" name="tags" value="location:fullstacknext.dev" />
             <p className="mb-4">
-              <input className="px-4 py-3 border-2 border-slate-400 rounded" name="email_address" aria-label="Your email address" placeholder="Your email address" required type="email" />
+              <input className="px-4 py-3 border-2 border-slate-400 rounded" name="email" aria-label="Your email address" placeholder="Your email address" required type="email" />
             </p>
             <p>
-              <button className="inline-flex items-center gap-2 text-white font-bold bg-purple-500 px-4 py-3 rounded">
+              <button type="submit" className="inline-flex items-center gap-2 text-white font-bold bg-purple-500 px-4 py-3 rounded">
                 Get Free Tutorials
               </button>
             </p>
           </form>
-
         </section>
       </Container>
     </main>
