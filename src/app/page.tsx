@@ -1,7 +1,8 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Youtube, Bell, CheckCircle, XCircle } from 'lucide-react';
+import { Play, Bell, CheckCircle, XCircle } from 'lucide-react';
 
 import Container from "@/components/Container";
 import Video from "@/components/Video";
@@ -9,36 +10,44 @@ import NewsletterForm from "@/components/NewsletterForm";
 
 const YOUTUBE_ID = 'Mcw8Mp8PYUE'
 
-export default function Home() {
+function StatusMessage() {
   const searchParams = useSearchParams();
   const status = searchParams.get('status');
   const message = searchParams.get('message');
 
+  if (!status) return null;
+
+  return (
+    <div className={`w-full py-4 px-6 ${
+      status === 'success' 
+        ? 'bg-green-50 border-green-200 text-green-800' 
+        : 'bg-red-50 border-red-200 text-red-800'
+    } border-b`}>
+      <Container>
+        <div className="flex items-center justify-center gap-3 max-w-3xl mx-auto">
+          {status === 'success' ? (
+            <CheckCircle className="h-5 w-5 flex-shrink-0" />
+          ) : (
+            <XCircle className="h-5 w-5 flex-shrink-0" />
+          )}
+          <p className="text-sm font-medium">
+            {status === 'success' 
+              ? (message ? decodeURIComponent(message) : 'Success!')
+              : 'Something went wrong, please try again'
+            }
+          </p>
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+export default function Home() {
   return (
     <main>
-      {status && (
-        <div className={`w-full py-4 px-6 ${
-          status === 'success' 
-            ? 'bg-green-50 border-green-200 text-green-800' 
-            : 'bg-red-50 border-red-200 text-red-800'
-        } border-b`}>
-          <Container>
-            <div className="flex items-center justify-center gap-3 max-w-3xl mx-auto">
-              {status === 'success' ? (
-                <CheckCircle className="h-5 w-5 flex-shrink-0" />
-              ) : (
-                <XCircle className="h-5 w-5 flex-shrink-0" />
-              )}
-              <p className="text-sm font-medium">
-                {status === 'success' 
-                  ? (message ? decodeURIComponent(message) : 'Success!')
-                  : 'Something went wrong, please try again'
-                }
-              </p>
-            </div>
-          </Container>
-        </div>
-      )}
+      <Suspense fallback={null}>
+        <StatusMessage />
+      </Suspense>
       <Container>
         <section className="max-w-3xl my-32 mx-auto">
           <h1 className="text-5xl font-black mt-24 text-center mb-12">
@@ -73,7 +82,7 @@ export default function Home() {
           <ul className="flex items-center justify-center gap-4 mt-12">
             <li>
               <a className="inline-flex items-center gap-2 text-white font-bold bg-purple-500 px-4 py-3 rounded" href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}`}>
-                <Youtube className="w-6 h-auto" />
+                <Play className="w-6 h-auto" />
                 Watch on YouTube
               </a>
             </li>
@@ -126,7 +135,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=0s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -143,7 +152,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=79s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -161,7 +170,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=260s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -178,7 +187,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=1500s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -195,7 +204,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=2055s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -212,7 +221,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=2548s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -229,7 +238,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=2947s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -246,7 +255,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=3326s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -265,7 +274,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=3907s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -282,7 +291,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=4811s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -299,7 +308,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=5299s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -317,7 +326,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=5904s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -334,7 +343,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=6191s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -352,7 +361,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=6438s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -370,7 +379,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=6724s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -388,7 +397,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=7426s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -405,7 +414,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=7666s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -422,7 +431,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=8031s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -439,7 +448,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=8467s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -456,7 +465,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=8673s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -474,7 +483,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=8864s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -491,7 +500,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=9062s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -509,7 +518,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=9321s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -527,7 +536,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=10450s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -544,7 +553,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=11007s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -562,7 +571,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=11295s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -579,7 +588,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=11729s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -596,7 +605,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=12131s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -613,7 +622,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=12400s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -630,7 +639,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=12699s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -647,7 +656,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=12880s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -664,7 +673,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=13262s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -681,7 +690,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=13438s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -698,7 +707,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=14189s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -715,7 +724,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=14676s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -732,7 +741,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=15422s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -749,7 +758,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=15930s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -766,7 +775,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=16222s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
@@ -783,7 +792,7 @@ export default function Home() {
                 </p>
                 <p>
                   <a href={`https://www.youtube.com/watch?v=${YOUTUBE_ID}&t=16431s`} className="flex items-center gap-2 hover:text-blue-500">
-                    <Youtube className="w-4 h-auto" />
+                    <Play className="w-4 h-auto" />
                     Jump to this chapter!
                   </a>
                 </p>
